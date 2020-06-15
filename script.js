@@ -55,7 +55,7 @@ let appData = {
             appData.income[incomeName] = incomeAmount;
         }
 
-        appData.addExpences = addExpences.toLowerCase().split(', ');
+        appData.addExpences = addExpences.toLowerCase().split(',');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         let expenceName,
@@ -119,18 +119,14 @@ appData.getTargetMonth();
 appData.getStatusIncome();
 
 
-let addExpencesModified = addExpences.slice(0, 1).toUpperCase();
-for (var char = 1; char < addExpences.length; char++) {
-    if (addExpences[char] !== ','){
-        addExpencesModified = addExpencesModified + addExpences[char];
-    } else {
-        addExpencesModified = addExpencesModified 
-        + addExpences[char] + ' ' + addExpences.slice(char+1, char + 2).toUpperCase();
-        ++char;
-    }
-}
-console.log(addExpencesModified);
+let addExpencesModified = '';
 
+for (let k = 0; k < appData.addExpences.length; k++ ){
+    addExpencesModified += (appData.addExpences[k]).trim().slice(0, 1).toUpperCase() 
+    + appData.addExpences[k].trim().slice(1).toLowerCase() + ', ';
+}
+
+console.log(addExpencesModified.slice(0, -2));
 
 for (var key in appData){
     console.log (key, appData[key]);
